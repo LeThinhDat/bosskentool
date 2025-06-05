@@ -86,8 +86,8 @@ banner = f"""
 ██████╔╝╚██████╔╝███████║███████║██║  ██╗███████╗██║ ╚████║
 ╚═════╝  ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═══╝
 
-      Admin: Thiệu Hoàng | YouTube: @thieuhoang75     
-        Box Zalo: https://zalo.me/g/ahnoav496        
+        Admin: Thịnh Đạt | YouTube: @BOssKen881   
+               Box Zalo: https://zalo.me      
           Ngày: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}               
 
 """    
