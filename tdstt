@@ -88,7 +88,7 @@ banner = f"""
 
         Admin: Thịnh Đạt | YouTube: @BOssKen881   
                Box Zalo: https://zalo.me      
-          Ngày: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}               
+               Ngày: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}               
 
 """    
 gach  = '========================================='
