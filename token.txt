@@ -1,0 +1,25 @@
+#REMAKE 2025 NEW BY LÊ ZĂN PÒ
+B=input
+A=print
+import random as J,string as K,uuid,requests as L,sys,os
+from rich.console import Console as C
+from rich.panel import Panel
+def G(t,d,c):C().print(Panel(d,title=t,width=None,padding=(1,3),style=c))
+def D():
+	A=sys.platform.lower()
+	if'linux'in A:os.system('clear')
+	elif'win'in A:os.system('cls')
+	else:0
+def E(e,p):
+	I='error_user_title';H='password';F='0';E='message';D='';C='error';M={'authorization':'OAuth 275254692598279|585aec5b4c27376758abb7ffcb9db2af','x-fb-friendly-name':'Authenticate','x-fb-connection-type':'Unknown','accept-encoding':'gzip, deflate','content-type':'application/x-www-form-urlencoded','x-fb-http-engine':'Liger'};N={'adid':D.join(J.choices(K.hexdigits,k=16)),'format':'json','device_id':str(uuid.uuid4()),'email':e,H:p,'generate_analytics_claims':F,'credentials_type':H,'source':'login','error_detail_type':'button_with_disabled','enroll_misauth':'false','generate_session_cookies':F,'generate_machine_id':F,'fb_api_req_friendly_name':'authenticate'};G=L.Session();G.headers.update(M);B=G.post('https://b-graph.facebook.com/auth/login',data=N).json()
+	if'session_key'in B:A(f"\n\033[92mSUCCESS: {B['access_token']} \033[0m")
+	elif'www.facebook.com'in B.get(C,{}).get(E,D):A('\n\x1b[91m FAILED: ACCOUNT IN CHECKPOINT \x1b[0m')
+	elif'SMS'in B.get(C,{}).get(E,D):A('\n\x1b[91m FAILED: 2 FACTOR AUTHENTICATION IS ENABLED. PLEASE DISABLE IT BEFORE GETTING TOKEN \x1b[0m')
+	elif B.get(C,{}).get(I)=='Wrong Credentials':A('\n\x1b[91m FAILED: WRONG CREDENTIALS \x1b[0m')
+	elif B.get(C,{}).get(I)=='Incorrect Username':A('\n\x1b[91m FAILED: ACCOUNT DOES NOT EXIST \x1b[0M')
+	elif'limit'in B.get(C,{}).get(E,D):A('\n\x1b[91m FAILED: REQUEST LIMIT. USE VPN OR WAIT \x1b[0m')
+	elif'required'in B.get(C,{}).get(E,D):A('\n\x1b[91m FAILED: PLEASE FILL IN ALL REQUIRED FIELDS \x1b[0m')
+	else:A(f"\n[91m ERROR: {B}[0m")
+def F():D();C='GET TOKEN BETA NEW 2025 REMAKE BY LÊ ZĂN PÒ';A(C);F=B('\x1b[0m[>>] Nhập Tài Khoản:\x1b[90m ');G=B('\x1b[0m[>>] Nhập Mật Khẩu :\x1b[90m ');E(F,G)
+F()
+#REMAKE 2025 NEW BY LÊ ZĂN PÒ
