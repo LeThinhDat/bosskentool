@@ -1,4 +1,3 @@
-
 import os
 import subprocess
 from time import sleep
@@ -75,13 +74,28 @@ def check_tiktok(id_tiktok, token):
 			return 'error_token'
 	except:
 		return 'error'
-def open_tiktok_studio(link):
-    """Hàm mở link trong TikTok Studio hoặc fallback về trình duyệt"""
+def open_tiktok_studio(link, uid):
+    """Hàm mở link trong TikTok Studio với log chi tiết"""
     try:
-        # Thử mở bằng TikTok Studio trước
-        os.system(f'am start -n com.ss.android.tt.creator/com.ss.android.ugc.aweme.splash.SplashActivity -d {link}')
-    except:
-        # Nếu không được thì mở bằng trình duyệt
+        print(f"\n{Colors.blue}[LOG] Đang mở link cho ID: {Colors.yellow}{uid}{Colors.reset}")
+        print(f"{Colors.blue}[LOG] Link: {Colors.cyan}{link}{Colors.reset}")
+        
+        subprocess.run(
+            [
+                'am', 'start',
+                '--user', '0',
+                '-a', 'android.intent.action.VIEW',
+                '-d', link,
+                '-n', 'com.ss.android.tt.creator/com.ss.android.ugc.aweme.splash.SplashActivity',
+                '-f', '0x10000000'
+            ],
+            check=True,
+            timeout=5
+        )
+        sleep(1)
+        print(f"{Colors.green}[LOG] Đã gửi yêu cầu mở TikTok Studio{Colors.reset}")
+    except Exception as e:
+        print(f"{Colors.red}[ERROR] Lỗi khi mở link: {str(e)}{Colors.reset}")
         os.system(f'am start -a android.intent.action.VIEW -d {link}')
 os.system('clear')
 banner = f"""
@@ -227,7 +241,7 @@ if check_log == 'success':
 			for job in list_job['data']:
 				uid = job['id']
 				link = job['link']
-				open_tiktok_studio(job['link'])
+				open_tiktok_studio(link, uid) 
 				check_duyet = duyet_job(type_duyet, token_tds, uid)		
 				if check_duyet != 'error':
 					dem_tong += 1
