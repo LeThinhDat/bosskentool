@@ -74,21 +74,28 @@ def check_tiktok(id_tiktok, token):
 			return 'error_token'
 	except:
 		return 'error'
+def open_tiktok_studio(link):
+    """Hàm mở link trong TikTok Studio hoặc fallback về trình duyệt"""
+    try:
+        # Thử mở bằng TikTok Studio trước
+        os.system(f'am start -n com.ss.android.tt.creator/com.ss.android.ugc.aweme.splash.SplashActivity -d {link}')
+    except:
+        # Nếu không được thì mở bằng trình duyệt
+        os.system(f'am start -a android.intent.action.VIEW -d {link}')
 os.system('clear')
 banner = f"""
 
 
+████████╗██╗  ██╗ ████████╗ █████╗  █████╗ ██╗      
+╚══██╔══╝██║  ██║ ╚══██╔══╝██╔══██╗██╔══██╗██║      
+   ██║   ███████║    ██║   ██║  ██║██║  ██║██║      
+   ██║   ██╔══██║    ██║   ██║  ██║██║  ██║██║      
+   ██║   ██║  ██║    ██║   ╚█████╔╝╚█████╔╝███████╗ 
+   ╚═╝   ╚═╝  ╚═╝    ╚═╝    ╚════╝  ╚════╝ ╚══════╝ 
 
-██████╗  ██████╗ ███████╗███████╗██╗  ██╗███████╗███╗   ██╗
-██╔══██╗██╔═══██╗██╔════╝██╔════╝██║ ██╔╝██╔════╝████╗  ██║
-██████╔╝██║   ██║███████╗███████╗█████╔╝ █████╗  ██╔██╗ ██║
-██╔══██╗██║   ██║╚════██║╚════██║██╔═██╗ ██╔══╝  ██║╚██╗██║
-██████╔╝╚██████╔╝███████║███████║██║  ██╗███████╗██║ ╚████║
-╚═════╝  ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═══╝
-
-        Admin: Thịnh Đạt | YouTube: @BOssKen881   
-               Box Zalo: https://zalo.me      
-               Ngày: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}               
+      Admin: Thiệu Hoàng | YouTube: @thieuhoang75     
+        Box Zalo: https://zalo.me/g/ahnoav496        
+          Ngày: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}               
 
 """    
 gach  = '========================================='
@@ -219,7 +226,7 @@ if check_log == 'success':
 			for job in list_job['data']:
 				uid = job['id']
 				link = job['link']
-				os.system(f'am start -a android.intent.action.VIEW -d "tiktokstudio://{link}"')
+				open_tiktok_studio(job['link'])
 				check_duyet = duyet_job(type_duyet, token_tds, uid)		
 				if check_duyet != 'error':
 					dem_tong += 1
@@ -237,9 +244,5 @@ if check_log == 'success':
 		if dem_tong == max_job:
 			print(f'{Colors.pink}Hoàn thành {max_job} nhiệm vụ√')
 			break
-
-
-
-
 
 
