@@ -1,5 +1,6 @@
 
 import os
+import subprocess
 from time import sleep
 from datetime import datetime
 from colorama import Fore, Style, init
