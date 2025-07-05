@@ -75,28 +75,38 @@ def check_tiktok(id_tiktok, token):
 	except:
 		return 'error'
 def open_tiktok_studio(link, uid):
-    """Hàm mở link trong TikTok Studio với log chi tiết"""
+    """Hàm mở trang cá nhân TikTok trong TikTok Studio"""
     try:
-        print(f"\n{Colors.blue}[LOG] Đang mở link cho ID: {Colors.yellow}{uid}{Colors.reset}")
-        print(f"{Colors.blue}[LOG] Link: {Colors.cyan}{link}{Colors.reset}")
+        # Chuẩn hóa link profile
+        if "@" in link:
+            username = link.split("@")[-1].split("/")[0].split("?")[0]
+        else:
+            username = link.split("tiktok.com/")[-1].split("/")[0].split("?")[0]
         
+        profile_url = f"https://www.tiktok.com/@{username}"
+        
+        print(f"\n{Colors.blue}[PROFILE] Đang mở profile {Colors.yellow}{username}{Colors.blue}")
+        print(f"{Colors.blue}[ID] {Colors.cyan}{uid}{Colors.blue}")
+        print(f"{Colors.blue}[URL] {Colors.green}{profile_url}")
+        
+        # Mở bằng TikTok Studio
         subprocess.run(
             [
                 'am', 'start',
                 '--user', '0',
                 '-a', 'android.intent.action.VIEW',
-                '-d', link,
+                '-d', profile_url,
                 '-n', 'com.ss.android.tt.creator/com.ss.android.ugc.aweme.splash.SplashActivity',
                 '-f', '0x10000000'
             ],
             check=True,
-            timeout=5
+            timeout=10
         )
-        sleep(1)
-        print(f"{Colors.green}[LOG] Đã gửi yêu cầu mở TikTok Studio{Colors.reset}")
+        sleep(2)  # Đợi 2 giây để trang tải
     except Exception as e:
-        print(f"{Colors.red}[ERROR] Lỗi khi mở link: {str(e)}{Colors.reset}")
-        os.system(f'am start -a android.intent.action.VIEW -d {link}')
+        print(f"{Colors.red}[ERROR] {e}{Colors.reset}")
+        # Fallback mở bằng trình duyệt
+        os.system(f'am start -a android.intent.action.VIEW -d {profile_url}')
 os.system('clear')
 banner = f"""
 
