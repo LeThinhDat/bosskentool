@@ -24,7 +24,7 @@ def login_tds(token):
 	try:
 		r = requests.get('https://traodoisub.com/api/?fields=profile&access_token='+token, headers=headers, timeout=5).json()
 		if 'success' in r:
-			os.system('clear')
+			clear_screen()
 			print(Colors.green + f"Đăng nhập thành công√\nUser: {Colors.red + r['data']['user'] + Colors.green} | Xu hiện tại: {Colors.red + r['data']['xu']}")
 			return 'success'
 		else:
@@ -66,7 +66,7 @@ def check_tiktok(id_tiktok, token):
 	try:
 		r = requests.get('https://traodoisub.com/api/?fields=tiktok_run&id='+id_tiktok+'&access_token='+token, headers=headers, timeout=5).json()
 		if 'success' in r:
-			os.system('clear')
+			clear_screen()
 			print(Colors.green + f"{r['data']['msg']}|ID: {Colors.pink + r['data']['id'] + Colors.green}")
 			return 'success'
 		else:
